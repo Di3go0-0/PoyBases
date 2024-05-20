@@ -3,6 +3,7 @@ from .Proveedores import ProveedoresFrame
 from .Productos import ProductosFrame
 from .clientes import ClientesFrame
 from .Insumos import InsumosFrame
+from .Usuarios import RegistroWindow
 
 class FrameMenuPrincipal(tk.Frame):
     def __init__(self, root=None):
@@ -27,6 +28,14 @@ class FrameMenuPrincipal(tk.Frame):
         self.boton_Clientes.config(width=20, font=('Arial', 12, 'bold'), fg='white', bg='#E1ED2E', cursor='hand2', activebackground='#F6FF74')
         self.boton_Clientes.grid(row=0, column=3, padx=10, pady=10)
 
+        self.button_salir = tk.Button(self, text='Salir', command=self.root.quit)
+        self.button_salir.config(width=20, font=('Arial', 12, 'bold'), fg='white', bg='#9E6262', cursor='hand2', activebackground='#E38B8B')
+        self.button_salir.grid(row=8, column=2, padx=10, pady=10)
+
+        self.button_register = tk.Button(self, text="Registrarse", command=self.registro)
+        self.button_register.config(width=20, font=('Arial', 12, 'bold'), fg='white', bg='#4D857E', cursor='hand2', activebackground='#81D6CC')
+        self.button_register.grid(row=8, column=1, padx=10, pady=10)
+
     def Proveedores(self):
         proveedores_window = ProveedoresFrame(self.root)  # Crea una instancia de la ventana de proveedores
         proveedores_window.grab_set()
@@ -42,3 +51,7 @@ class FrameMenuPrincipal(tk.Frame):
     def Clientes(self):
         productos_window = ClientesFrame(self.root)  # Crea una instancia de la ventana de clientes
         productos_window.grab_set()
+
+    def registro(self):
+        registro_window = RegistroWindow(self.root)  # Crea una instancia de la ventana de registro
+        registro_window.grab_set()

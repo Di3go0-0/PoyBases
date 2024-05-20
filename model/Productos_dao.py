@@ -50,13 +50,16 @@ def listar():
     conexion.close()
     return Producto
 
-def editar(Producto, id):
+def editar(datos_actualizados, id):
     conexion = conectar()
     cursor = conexion.cursor()
-    cursor.execute('''
-        UPDATE Productos SET Codigo = ?, Nombre = ?, Precio = ?, Cantidad = ?,
-        WHERE id = ?
-    ''', (Producto.Codigo, Producto.nombre, Producto.Precio, Producto.Cantidad, id))
+    columnas = ', '.join(f"{col} = ?" for col in datos_actualizados.keys())
+    valores = list(datos_actualizados.values())
+    valores.append(id)
+    
+    query = f"UPDATE Productos SET {columnas} WHERE id = ?"
+    
+    cursor.execute(query, valores)
     conexion.commit()
     conexion.close()
 

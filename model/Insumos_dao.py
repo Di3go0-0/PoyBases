@@ -7,7 +7,7 @@ def crear_tabla_insumos():
     conexion = conectar()
     cursor = conexion.cursor()
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Insumos (
+        CREATE TABLE IF NOT EXISTS Insumos (    
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             Codigo INTEGER,
             Nombre TEXT NOT NULL,
@@ -50,13 +50,16 @@ def listar():
     conexion.close()
     return Insumo
 
-def editar(Insumo, id):
+def editar(datos_actualizados, id):
     conexion = conectar()
     cursor = conexion.cursor()
-    cursor.execute('''
-        UPDATE Insumos SET Codigo = ?, Nombre = ?, Precio = ?, Cantidad = ?,
-        WHERE id = ?
-    ''', (Insumo.Codigo, Insumo.nombre, Insumo.Precio, Insumo.Cantidad, id))
+    columnas = ', '.join(f"{col} = ?" for col in datos_actualizados.keys())
+    valores = list(datos_actualizados.values())
+    valores.append(id)
+    
+    query = f"UPDATE Insumos SET {columnas} WHERE id = ?"
+    
+    cursor.execute(query, valores)
     conexion.commit()
     conexion.close()
 

@@ -54,13 +54,16 @@ def listar():
     conexion.close()
     return proveedores
 
-def editar(proveedor, id):
+def editar(datos_actualizados, id):
     conexion = conectar()
     cursor = conexion.cursor()
-    cursor.execute('''
-        UPDATE Proveedores SET cedula_nit = ?, nombre = ?, apellidos = ?, telefono = ?, correo = ?, direccion = ?
-        WHERE id = ?
-    ''', (proveedor.cedula_nit, proveedor.nombre, proveedor.apellidos, proveedor.telefono, proveedor.correo, proveedor.direccion, id))
+    columnas = ', '.join(f"{col} = ?" for col in datos_actualizados.keys())
+    valores = list(datos_actualizados.values())
+    valores.append(id)
+    
+    query = f"UPDATE Proveedores SET {columnas} WHERE id = ?"
+    
+    cursor.execute(query, valores)
     conexion.commit()
     conexion.close()
 
