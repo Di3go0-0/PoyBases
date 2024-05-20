@@ -1,6 +1,3 @@
-Por supuesto, aquí tienes el código en formato Markdown para tu archivo `README.md` con la lista de dependencias:
-
-```markdown
 # InstandPower
 
 InstandPower is a Python-based application that utilizes SQLite for local data storage and Tkinter for the graphical user interface.
@@ -23,9 +20,9 @@ To run the program, use the following command:
 python Instand_power.py
 ```
 
-## Building the Executable
+## Create the program executable
 
-To generate an executable file, use the following command:
+To run the program, use the following command:
 
 ```sh
 python .\setup.py build
@@ -42,10 +39,3 @@ The project requires the following libraries:
 - pyinstaller-hooks-contrib==2024.6
 - pywin32-ctypes==0.2.2
 - setuptools==69.5.1
-
-## License
-
-This project is licensed under the MIT License.
-```
-
-Copia y pega este código en tu archivo `README.md`. Este archivo proporciona instrucciones claras sobre cómo instalar las dependencias, ejecutar el programa y generar el ejecutable, además de incluir una lista detallada de las dependencias requeridas.
