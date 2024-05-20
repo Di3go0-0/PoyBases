@@ -20,3 +20,11 @@ To run the program, use the following command:
 python Instand_power.py
 ```
 
+## Create the program executable
+
+To run the program, use the following command:
+
+```sh
+python .\setup.py build
+```
+
