@@ -39,3 +39,4 @@ The project requires the following libraries:
 - pyinstaller-hooks-contrib==2024.6
 - pywin32-ctypes==0.2.2
 - setuptools==69.5.1
+- Python==3.12.3
