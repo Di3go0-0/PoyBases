@@ -1,4 +1,4 @@
-from ..database.conexion_db import ConexionDB
+from database.conexion_db import ConexionDB
 from tkinter import messagebox
 
 class Usuario:
@@ -46,6 +46,10 @@ def verificar_credenciales(username, password):
     finally:
         conexion.cerrar()
 
+def agregar_usuario_default():
+    if not verificar_existencia_usuario('diego'):
+        usuario_default = Usuario('diego', '1234')
+        guardar(usuario_default)
 
 
 
@@ -61,3 +65,5 @@ def verificar_existencia_usuario(username):
         return False
     finally:
         conexion.cerrar()
+
+

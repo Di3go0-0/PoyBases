@@ -4,6 +4,7 @@ from .Productos import ProductosFrame
 from .clientes import ClientesFrame
 from .Insumos import InsumosFrame
 from .Usuarios import RegistroWindow
+from .Construccion import ConstruccionFrame
 
 class FrameMenuPrincipal(tk.Frame):
     def __init__(self, root=None):
@@ -24,7 +25,7 @@ class FrameMenuPrincipal(tk.Frame):
         self.boton_Productos.config(width=20, font=('Arial', 12, 'bold'), fg='white', bg='#9E6262', cursor='hand2', activebackground='#E38B8B')
         self.boton_Productos.grid(row=0, column=2, padx=10, pady=10)
 
-        self.boton_Clientes = tk.Button(self, text="Construccion", command=self.Clientes)
+        self.boton_Clientes = tk.Button(self, text="Construccion", command=self.Construccion)
         self.boton_Clientes.config(width=20, font=('Arial', 12, 'bold'), fg='white', bg='#E1ED2E', cursor='hand2', activebackground='#F6FF74')
         self.boton_Clientes.grid(row=0, column=3, padx=10, pady=10)
 
@@ -48,8 +49,8 @@ class FrameMenuPrincipal(tk.Frame):
         productos_window = InsumosFrame(self.root)  # Crea una instancia de la ventana de clientes
         productos_window.grab_set()
 
-    def Clientes(self):
-        productos_window = ClientesFrame(self.root)  # Crea una instancia de la ventana de clientes
+    def Construccion(self):
+        productos_window = ConstruccionFrame(self.root)  # Crea una instancia de la ventana de clientes
         productos_window.grab_set()
 
     def registro(self):

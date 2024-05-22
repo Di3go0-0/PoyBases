@@ -9,12 +9,14 @@ def crear_tabla_insumos():
     conexion = conectar()
     cursor = conexion.cursor()
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Insumos (    
+        CREATE TABLE IF NOT EXISTS Insumos (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
+            proveedor INTEGER,
             Codigo INTEGER,
             Nombre TEXT NOT NULL,
             Precio INTEGER,
-            Cantidad TEXT NOT NULL
+            Cantidad TEXT NOT NULL,
+            FOREIGN KEY (proveedor) REFERENCES Proveedores(id)
         )
     ''')
     conexion.commit()
@@ -28,7 +30,8 @@ def borrar_tabla():
     conexion.close()
 
 class Insumo:
-    def __init__(self, Codigo, Nombre, Precio, Cantidad):
+    def __init__(self, proveedor, Codigo, Nombre, Precio, Cantidad):
+        self.proveedor = proveedor
         self.Codigo = Codigo
         self.Nombre = Nombre
         self.Precio = Precio
@@ -38,11 +41,12 @@ def guardar(Insumo):
     conexion = conectar()
     cursor = conexion.cursor()
     cursor.execute('''
-        INSERT INTO Insumos (Codigo, Nombre, Precio, Cantidad)
-        VALUES (?, ?, ?, ?)
-    ''', (Insumo.Codigo, Insumo.Nombre, Insumo.Precio, Insumo.Cantidad))
+        INSERT INTO Insumos (proveedor, Codigo, Nombre, Precio, Cantidad)
+        VALUES (?, ?, ?, ?, ?)
+    ''', (Insumo.proveedor, Insumo.Codigo, Insumo.Nombre, Insumo.Precio, Insumo.Cantidad))
     conexion.commit()
     conexion.close()
+
 
 def listar():
     conexion = conectar()
