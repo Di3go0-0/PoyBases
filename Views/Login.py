@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-from .Usuarios_dao import guardar, Usuario, verificar_credenciales, crear_tabla
+from Controllers.Usuarios_dao import guardar, Usuario, verificar_credenciales, crear_tabla
 from .MenuPrincipal import FrameMenuPrincipal
 
 

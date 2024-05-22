@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from .Clientes_dao import crear_tabla_clientes, borrar_tabla, Cliente, guardar, listar, editar, eliminar
+from Controllers.Clientes_dao import crear_tabla_clientes, borrar_tabla, Cliente, guardar, listar, editar, eliminar
 
 class ClientesFrame(tk.Toplevel):
     def __init__(self, root=None):

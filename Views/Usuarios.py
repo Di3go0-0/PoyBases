@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-from .Usuarios_dao import guardar, Usuario, verificar_existencia_usuario
+from Controllers.Usuarios_dao import guardar, Usuario, verificar_existencia_usuario
 
 class RegistroWindow(tk.Toplevel):
     def __init__(self, parent):

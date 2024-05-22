@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from .Proveedores_dao import crear_tabla_proveedores, borrar_tabla, Proveedor, guardar, listar, editar, eliminar
+from Controllers.Proveedores_dao import crear_tabla_proveedores, borrar_tabla, Proveedor, guardar, listar, editar, eliminar
 
 class ProveedoresFrame(tk.Toplevel):
     def __init__(self, root=None):

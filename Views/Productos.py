@@ -1,16 +1,16 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from .Insumos_dao import crear_tabla_insumos, borrar_tabla, Insumo, guardar, listar, editar, eliminar
+from Controllers.Productos_dao import crear_tabla_productos, borrar_tabla, Producto, guardar, listar, editar, eliminar
 
-class InsumosFrame(tk.Toplevel):
+class ProductosFrame(tk.Toplevel):
     def __init__(self, root=None):
         super().__init__(root)
-        self.title("Gestión de Insumos")
-        self.geometry("1020x600")
+        self.title("Gestión de Productos")
+        self.geometry("1200x600")
         self.setup_ui()
-        self.tabla_insumos()
+        self.tabla_productos()
         self.deshabilitar_campos()
-        self.selected_insumo_id = None
+        self.selected_producto_id = None
 
     def setup_ui(self):
         self.label_codigo = tk.Label(self, text='Codigo:')
@@ -143,21 +143,21 @@ class InsumosFrame(tk.Toplevel):
         if not self.validar_datos():
             return
 
-        insumo = Insumo(
+        producto = Producto(
             self.mi_codigo.get(),
             self.mi_nombre.get(),
             float(self.mi_precio.get()),
-            int(self.mi_cantidad.get()),
+            int(self.mi_cantidad.get())
         )
-        guardar(insumo)
-        self.tabla_insumos()
+        guardar(producto)
+        self.tabla_productos()
         self.deshabilitar_campos()
 
-    def tabla_insumos(self):
+    def tabla_productos(self):
         for item in self.tabla.get_children():
             self.tabla.delete(item)
-        Insumos = listar()
-        for p in Insumos:
+        productos = listar()
+        for p in productos:
             self.tabla.insert('', 'end', text=p[0], values=(p[1], p[2], p[3], p[4]))
 
     def editar_datos(self):
@@ -165,8 +165,8 @@ class InsumosFrame(tk.Toplevel):
             selected_item = self.tabla.selection()[0]
             values = self.tabla.item(selected_item, 'values')
             
-            # Guardar el id del insumo
-            self.selected_insumo_id = self.tabla.item(selected_item, 'text')
+            # Guardar el id del producto
+            self.selected_producto_id = self.tabla.item(selected_item, 'text')
             
             self.entry_codigo.config(state='normal')
             self.entry_nombre.config(state='normal')
@@ -207,9 +207,9 @@ class InsumosFrame(tk.Toplevel):
                 datos_actualizados[campo] = nuevos_valores[campo]
         
         if datos_actualizados:
-            editar(datos_actualizados, self.selected_insumo_id)
+            editar(datos_actualizados, self.selected_producto_id)
         
-        self.tabla_insumos()
+        self.tabla_productos()
         self.deshabilitar_campos()
         self.button_guardar.config(command=self.guardar_datos)
 
@@ -217,6 +217,6 @@ class InsumosFrame(tk.Toplevel):
         try:
             selected_item = self.tabla.selection()[0]
             eliminar(self.tabla.item(selected_item, 'text'))
-            self.tabla_insumos()
+            self.tabla_productos()
         except IndexError:
             messagebox.showerror("Error", "Seleccione un registro para eliminar")
