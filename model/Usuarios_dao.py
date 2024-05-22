@@ -45,3 +45,19 @@ def verificar_credenciales(username, password):
         return False
     finally:
         conexion.cerrar()
+
+
+
+
+def verificar_existencia_usuario(username):
+    conexion = ConexionDB('Usuarios')
+    sql = "SELECT * FROM Usuarios WHERE Username = ?"
+    try:
+        conexion.cursor.execute(sql, (username,))
+        usuario = conexion.cursor.fetchone()
+        return usuario is not None
+    except Exception as e:
+        # messagebox.showerror("Error de Verificación", f"Error al verificar la existencia del usuario: {e}")
+        return False
+    finally:
+        conexion.cerrar()

@@ -101,7 +101,6 @@ class ProveedoresFrame(tk.Toplevel):
         self.button_salir.grid(row=8, column=2, padx=10, pady=10)
 
     def habilitar_campos(self):
-
         self.mi_cedula_nit.set('')
         self.mi_nombre.set('')
         self.mi_apellidos.set('')
@@ -119,7 +118,6 @@ class ProveedoresFrame(tk.Toplevel):
         self.button_cancelar.config(state='normal')
 
     def deshabilitar_campos(self):
-
         self.mi_cedula_nit.set('')
         self.mi_nombre.set('')
         self.mi_apellidos.set('')
@@ -136,14 +134,61 @@ class ProveedoresFrame(tk.Toplevel):
         self.button_guardar.config(state='disabled')
         self.button_cancelar.config(state='disabled')
 
+    def validar_datos(self):
+        cedula_nit = self.mi_cedula_nit.get()
+        nombre = self.mi_nombre.get()
+        apellidos = self.mi_apellidos.get()
+        telefono = self.mi_telefono.get()
+        correo = self.mi_correo.get()
+        direccion = self.mi_direccion.get()
+
+        # Validar que la cédula sea un entero
+        try:
+            int(cedula_nit)
+        except ValueError:
+            messagebox.showerror("Error de Validación", "La cédula o NIT debe ser un número entero.")
+            return False
+        
+        # Validar que el nombre sea una cadena de caracteres
+        if not nombre.isalpha():
+            messagebox.showerror("Error de Validación", "El nombre debe contener solo letras.")
+            return False
+        
+        # Validar que el apellido sea una cadena de caracteres
+        if not apellidos.isalpha():
+            messagebox.showerror("Error de Validación", "Los apellidos deben contener solo letras.")
+            return False
+        
+        # Validar que el teléfono sea un entero
+        try:
+            int(telefono)
+        except ValueError:
+            messagebox.showerror("Error de Validación", "El teléfono debe ser un número entero.")
+            return False
+
+        # Validar el formato del correo electrónico
+        if not "@" in correo or not "." in correo:
+            messagebox.showerror("Error de Validación", "El correo electrónico no tiene un formato válido.")
+            return False
+
+        # Validar que la dirección sea una cadena de strings
+        if not isinstance(direccion, str):
+            messagebox.showerror("Error de Validación", "La dirección debe ser una cadena de caracteres.")
+            return False
+
+        return True
+
     def guardar_datos(self):
+        if not self.validar_datos():
+            return
+
         proveedor = Proveedor(
-            self.entry_cedula_nit.get(),
-            self.entry_nombre.get(),
-            self.entry_apellidos.get(),
-            self.entry_telefono.get(),
-            self.entry_correo.get(),
-            self.entry_direccion.get(),
+            self.mi_cedula_nit.get(),
+            self.mi_nombre.get(),
+            self.mi_apellidos.get(),
+            self.mi_telefono.get(),
+            self.mi_correo.get(),
+            self.mi_direccion.get(),
         )
         guardar(proveedor)
         self.tabla_proveedores()

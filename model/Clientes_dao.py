@@ -1,7 +1,8 @@
 import sqlite3
 
 def conectar():
-    return sqlite3.connect("base_datos.db")
+    # return sqlite3.connect("base_datos.db")
+    return sqlite3.connect("database/DataBase.DB")
 
 def crear_tabla_clientes():
     conexion = conectar()
