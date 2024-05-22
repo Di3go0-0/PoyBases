@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-from .Usuarios_dao import guardar, Usuario, verificar_credenciales, crear_tabla, verificar_existencia_usuario
+from .Usuarios_dao import guardar, Usuario, verificar_existencia_usuario
 
 class RegistroWindow(tk.Toplevel):
     def __init__(self, parent):
@@ -41,6 +41,8 @@ class RegistroWindow(tk.Toplevel):
             messagebox.showerror("Error", "La contraseña debe tener al menos 4 caracteres")
         elif verificar_existencia_usuario(username):
             messagebox.showerror("Error", "El nombre de usuario ya existe")
+        elif password != confirm_password:
+            messagebox.showerror("Error", "Las contraseñas no coinciden")
         else:
             usuario = Usuario(username, password)
             guardar(usuario)
