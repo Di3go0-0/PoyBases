@@ -1,7 +1,6 @@
 import tkinter as tk
 from .Proveedores import ProveedoresFrame
 from .Productos import ProductosFrame
-from .clientes import ClientesFrame
 from .Insumos import InsumosFrame
 from .Usuarios import RegistroWindow
 from .Construccion import ConstruccionFrame

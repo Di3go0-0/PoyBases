@@ -5,7 +5,6 @@ from Controllers.Usuarios_dao import guardar, Usuario, verificar_credenciales, c
 from Views.Login import LoginFrame
 from Controllers.Proveedores_dao import crear_tabla_proveedores
 from Controllers.Productos_dao import crear_tabla_productos
-from Controllers.Clientes_dao import crear_tabla_clientes
 from Controllers.Insumos_dao import crear_tabla_insumos
 from Controllers.Construccion_dao import crear_tabla_construccion
 
@@ -14,7 +13,6 @@ from Controllers.Construccion_dao import crear_tabla_construccion
 crear_tabla()
 crear_tabla_productos()
 crear_tabla_proveedores()
-crear_tabla_clientes()
 crear_tabla_insumos()
 crear_tabla_construccion()
 agregar_usuario_default()

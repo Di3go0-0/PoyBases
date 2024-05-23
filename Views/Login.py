@@ -10,7 +10,7 @@ class LoginFrame(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Inicio de Sesión")
-        self.geometry("300x180")
+        self.geometry("300x100")
         self.resizable(False, False)
         self.setup_ui()
 

@@ -10,10 +10,8 @@ setup(
     options={
         'build_exe': {
             'include_files': [
-                ('base_datos.db', 'base_datos.db'),  # Include the first database file
-                ('database/DataBase.DB', 'database/DataBase.DB')  # Include the second database file
+                ('database', 'database')  # Include the entire 'database' folder
             ]
-            
         },
     },
     executables=[Executable("Instand_Power.py", base="Win32GUI")]
