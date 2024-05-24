@@ -1,9 +1,8 @@
 import sqlite3
+from tkinter import messagebox
 
 def conectar():
-    # return sqlite3.connect("base_datos.db")
     return sqlite3.connect("database/DataBase.DB")
-
 
 def crear_tabla_insumos():
     conexion = conectar()
@@ -37,16 +36,31 @@ class Insumo:
         self.Precio = Precio
         self.Cantidad = Cantidad
 
+def verificarProveedor(proveedor):
+    conexion = conectar()
+    cursor = conexion.cursor()
+    cursor.execute('SELECT id FROM Proveedores WHERE id = ?', (proveedor,))
+    proveedor = cursor.fetchone()
+    if proveedor is None:
+        return False
+    
+    return True
+
 def guardar(Insumo):
     conexion = conectar()
     cursor = conexion.cursor()
+    
+    # Verificar si el proveedor existe
+    if not verificarProveedor(Insumo.proveedor):
+        messagebox.showerror("Error", "El proveedor no existe.")
+        return
+        
     cursor.execute('''
         INSERT INTO Insumos (proveedor, Codigo, Nombre, Precio, Cantidad)
         VALUES (?, ?, ?, ?, ?)
     ''', (Insumo.proveedor, Insumo.Codigo, Insumo.Nombre, Insumo.Precio, Insumo.Cantidad))
     conexion.commit()
     conexion.close()
-
 
 def listar():
     conexion = conectar()
